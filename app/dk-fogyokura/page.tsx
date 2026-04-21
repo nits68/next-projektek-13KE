@@ -28,8 +28,8 @@ export function célElérve2(cél: number, mérések: number[]): number {
 // Így a megoldás hibás!!!
 export function célElérve3(cél: number, mérések: number[]): number {
   mérések.forEach((e, i) => {
-    if (e <= cél) return (i + 1);
-  })
+    if (e <= cél) return i + 1;
+  });
   return 0; // ha a célt nem érte el Mari néni
 }
 
@@ -42,7 +42,7 @@ export function célElérveSzöveg(cél: number, mérések: number[]): string {
 export function ejnyeBejnyeHetekSzáma(mérések: number[]): number {
   let hetekSzáma: number = 0;
   for (let i = 0; i < mérések.length - 1; i++) {
-    if (mérések[i+1] > mérések[i]) hetekSzáma++;
+    if (mérések[i + 1] > mérések[i]) hetekSzáma++;
   }
   return hetekSzáma;
 }
@@ -53,21 +53,24 @@ export default function DKFogyokuraPage() {
   return (
     // font-mono -> Monospace betűtípus (azonos szélesek a karakterek)
     // whitespace-pre -> vezérlő karakterek megtartása (\t, \n)
-    <div className="font-mono whitespace-pre">
-      <p>{`Hetek száma=${mérések.length}`}</p>
-      <p>Elérni kívánt testömeg (kg)={célTömeg}</p>
-      {/* Ciklus készítése JSX kódban: */}
-      {/* e -> felveszi a tömb értékeit */}
-      {/* i -> felveszi a tömb indexeit */}
-      {/* a map metódus "iterál" */}
-      {/* key jellemző kötelező, szerepe az azonosítás */}
-      {mérések.map((e, i) => (
-        <p key={i}>
-          {i + 1}. héten={e}
-        </p>
-      ))}
-      <p>{célElérveSzöveg(célTömeg, mérések)}</p>
-      <p>A tömege {ejnyeBejnyeHetekSzáma(mérések)} esetben nőtt egyik hétről a másikra.</p>
+    <div className="flex min-h-screen items-center justify-center bg-gray-200">
+      <div className="flex w-100 flex-col rounded-xl bg-white p-5 shadow-xl">
+        <h1 className="mb-3 text-center text-2xl">DigK - Fogyókúra feladata</h1>
+        <p>{`Hetek száma=${mérések.length}`}</p>
+        <p>Elérni kívánt testömeg (kg)={célTömeg}</p>
+        {/* Ciklus készítése JSX kódban: */}
+        {/* e -> felveszi a tömb értékeit */}
+        {/* i -> felveszi a tömb indexeit */}
+        {/* a map metódus "iterál" */}
+        {/* key jellemző kötelező, szerepe az azonosítás */}
+        {mérések.map((e, i) => (
+          <p key={i}>
+            {i + 1}. héten={e}
+          </p>
+        ))}
+        <p>{célElérveSzöveg(célTömeg, mérések)}</p>
+        <p>A tömege {ejnyeBejnyeHetekSzáma(mérések)} esetben nőtt egyik hétről a másikra.</p>
+      </div>
     </div>
   );
 }

@@ -39,19 +39,22 @@ export function játékEredménye(d: number[]): string {
     aktMező += dobás;
     if (aktMező % 10 == 0) aktMező -= 3; // aktMező = aktMező - 3
   }
-  return aktMező >= 45 ? "befejezte" : "abbahagyta"
+  return aktMező >= 45 ? "befejezte" : "abbahagyta";
 }
 
 export default function LétraPage() {
   const dobások: number[] = [3, 1, 1, 2, 1, 5, 5, 4, 4, 4, 1, 2, 3, 6, 4, 6, 1, 4];
   return (
-    <div className="font-mono whitespace-pre">
-      <p>2. feladat</p>
-      <p>{játékosMezői(dobások)}</p>
-      <p>3. feladat</p>
-      <p>A játék során {visszalépésekSzáma(dobások)} alkalommal lépet létrára.</p>
-      <p>4. feladat</p>
-      <p>A játékot {játékEredménye(dobások)}.</p>
+    <div className="flex min-h-screen flex-col items-center justify-center bg-gray-200">
+      <div className="flex w-100 flex-col rounded-xl bg-white p-5 shadow-xl">
+        <h1 className="text-2xl text-center mb-3">DigK - Létra feladata</h1>
+        <p>2. feladat</p>
+        <p>{játékosMezői(dobások)}</p>
+        <p>3. feladat</p>
+        <p>A játék során {visszalépésekSzáma(dobások)} alkalommal lépet létrára.</p>
+        <p>4. feladat</p>
+        <p>A játékot {játékEredménye(dobások)}.</p>
+      </div>
     </div>
   );
 }
